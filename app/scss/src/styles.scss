@@ -1,0 +1,88 @@
+.login-page{
+	background-color: #DFDFDFFF;
+	height: 100%;
+
+}
+
+.Aligner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Aligner-item {
+  max-width: 50%;
+}
+
+.Aligner-item--top {
+  align-self: flex-start;
+}
+
+.Aligner-item--bottom {
+  align-self: flex-end;
+}
+.mainpage{
+	background-image: url(../../images/wlp.jpg);
+	height: 100%;
+	background-size: cover;
+}
+.noticespage{
+}
+
+.search-input{
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+
+}
+.scroll-dyn-btn{
+	position: fixed;
+	bottom: 25px;
+	left: 20px;
+	right: auto;
+
+}
+.container-content{
+	margin-top: 65px;
+}
+#search-button{
+	visibility: hidden;
+}
+@media screen and (max-width: 960px) {
+
+.scroll-dyn-btn{
+	
+	bottom: 20px;
+	right: 20px;
+	left: auto;
+
+}
+#wlcm-msg{
+	display: none;
+}
+.container-content{
+	margin-top: 35px;
+}
+.search-input{
+	position: static;
+	visibility: hidden;
+	bottom: auto;
+	right: auto;
+	
+}
+
+#search-button{
+	visibility: visible;
+}
+}
+@media screen and (max-width: 600px){
+	.container-content{
+	margin-top: 35px;
+	}
+	#search-button{
+	visibility: visible;
+	}
+	#wlcm-msg{
+		display: none;
+	}
+}

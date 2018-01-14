@@ -1,0 +1,74 @@
+<div layout="column" ng-controller="LoginController" flex class="login-page">
+    <header class="header">
+        <md-toolbar md-scroll-shrink class="md-whiteframe-z3" class="toolbar" >
+            <div class="md-toolbar-tools">
+            <h3>
+                <span>NoticeApp <md-icon aria-label="Menu" class="mi mi-keyboard-arrow-right"></md-icon> Login</span>
+            </h3>
+            </div>
+        </md-toolbar>
+    </header>
+    <div class="Aligner">
+    <div class="Aligner-item">
+     <md-card>
+        <md-card-header>
+          <md-card-avatar>
+            <img src="images/bell.svg"/>
+          </md-card-avatar>
+          <md-card-header-text>
+            <span class="md-title">Angular-Notice</span>
+            <span class="md-subhead">Service</span>
+          </md-card-header-text>
+        </md-card-header>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">Login to create and edit your notice</span>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+          <p>
+            Read. Create. Edit.
+          </p>
+          <article layout-align="center center">
+               <md-content layout-padding>
+                    <form name="projectForm" ng-submit="login()">
+
+                    
+
+                      <div layout="column">
+                          <md-input-container class="md-block" flex>
+                            <label>Client Email</label>
+                            <input required type="email" name="clientEmail" ng-model="project.clientEmail"
+                                   minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+
+                            <div ng-messages="projectForm.clientEmail.$error" role="alert">
+                              <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                Your email must be between 10 and 100 characters long and look like an e-mail address.
+                              </div>
+                            </div>
+                          </md-input-container>
+                            <md-input-container flex>
+                              <label>Password</label>
+                              <input type="password" required name="clientPwd" ng-model="project.clientPwd">
+                              <div ng-messages="projectForm.clientPwd.$error">
+                                <div ng-message="required">This is required.</div>
+                              </div>
+                            </md-input-container>
+                      
+
+                      
+                      </div>
+                      <md-button type="submit" flex class="md-raised md-primary">Submit</md-button>
+                      
+                      
+                    </form>
+                    </md-content>
+        
+    </article>
+        </md-card-content>
+      </md-card>
+      </div>
+      </div>
+      </div>
+    
+</div>

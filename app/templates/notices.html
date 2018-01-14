@@ -1,0 +1,138 @@
+<div layout="column" ng-controller="NoticesController" flex class="noticespage">
+
+    <header class="header" >
+        <md-toolbar class="md-whiteframe-z1 md-hue2" class="toolbar" layout="row" flex style="position: fixed; z-index: 50;"  >
+            <div class="md-toolbar-tools" flex>
+            <h3>
+                <span>NoticeApp <md-icon aria-label="Menu" class="mi mi-keyboard-arrow-right"></md-icon> Notices</span>
+            </h3>
+            <div  flex align="right" id="search-button">
+            	<md-button ng-click="showSearchDialog($event)" class="md-icon-button"><md-icon aria-label="Srch" class="mi24 mi-search"> </md-icon></md-button>
+				<div style="visibility: hidden;">
+					<div class="md-dialog-container" id="search-dialog-container" >
+				      <md-dialog layout-padding layout="column" class="md-padding Aligner">
+				      	<md-input-container class="md-icon-float md-block md-padding">
+					      <label>What are you looking for?</label>
+					      <md-icon class="mi24 mi-search"></md-icon>
+					      <input ng-model="searchNoteText" type="text">
+					    </md-input-container>
+				      	
+				      </md-dialog>
+            	 
+            	</div>	
+				</div>	
+            	 
+            </div>
+            <div align="right">
+            	<md-menu>
+            		<md-button ng-click="openMainMenu($mdMenu, $event)" class="md-icon-button"><md-icon md-menu-origin aria-label="More" class="mi24 mi-more-vert"> </md-icon></md-button>
+            		<md-menu-content width="4">
+            			<md-menu-item>
+            				<md-button ng-click="showLogoutDialog($event)"><md-icon md-menu-align-target aria-label="Logout" class="mi24 mi-exit-to-app"> </md-icon>
+            				Logout
+            				</md-button>
+            			</md-menu-item>
+            		</md-menu-content>
+            	</md-menu>
+            	
+            </div>
+            </div>
+
+                       	
+        </md-toolbar>
+    </header>
+    <article flex class="container-content">
+    	<div class="scroll-dyn-btn" flex>
+    		<div flex>
+    			<md-button ng-click="addNewNote()" class="md-fab"><md-icon aria-label="Add" class="mi24 mi-add"> </md-icon></md-button>
+    		</div>
+    	</div >
+    	<div layout="column" class="Aligner" id="wlcm-msg" ng-if="welcomeMessage">
+    		<div flex class="md-padding">
+    			<h4> Welcome, {{ authData.email }}. Now, you can manage your notices
+				<md-button ng-click="closeWelcomeMessage()" class="md-icon-button"><md-icon aria-label="closeWelcome" class="mi24 mi-close"> </md-icon></md-button>
+    			</h4>  			
+    		</div>
+		
+    	</div>
+    	
+    	
+
+    	<div class="search-input">
+		    
+			    <md-input-container class="md-icon-float md-block">
+			      
+			      <label>What are you looking for?</label>
+			      <md-icon class="mi24 mi-search"></md-icon>
+			      <input ng-model="searchNoteText" type="text">
+			    </md-input-container>
+		    
+	    </div>
+
+	   
+    	
+    	
+        <div class="md-padding" layout="row" layout-xs="column" layout-wrap flex>
+            <md-card ng-repeat="notice in notices | filter:searchNoteText" flex="30" flex-xs="100" flex-sm="45"  class="md-whiteframe-z3">
+                <md-card-header>
+                  <md-card-avatar>
+                    <img class="md-user-avatar" ng-src="images/bell.svg"/>
+                  </md-card-avatar>
+                  <md-card-header-text>
+                    <span class="md-title">{{notice.title}}</span>
+                    <span class="md-subhead">{{ authData.email }}</span>
+                  </md-card-header-text>
+                </md-card-header>
+                <img ng-src="{{notice.image}}" class="md-card-image" alt="" style="max-height: 250px;">
+                 <div style="visibility: hidden">
+				    <div class="md-dialog-container" id="{{'obj-' + notice.id}}">
+				      <md-dialog layout-padding layout="column">
+				      	<md-input-container flex>
+				      		<label>Title</label>
+				      		<input ng-model="notice.title" md-maxlength="30">
+				      	</md-input-container>
+				      	<md-input-container flex>
+				      		<label>Body</label>
+				      		<textarea ng-model="notice.noticeBody" md-maxlength="1000" rows="5"></textarea>
+				      	</md-input-container>
+				      	
+				        
+
+
+
+				      </md-dialog>
+				    </div>
+				  </div>
+               
+                <md-card-actions  layout-align="end">
+                
+                  <md-card-icon-actions class="Aligner">
+                  	<div >
+                  		<md-button ng-click="deleteNote(notice.id)" class="md-icon-button"><md-icon aria-label="Close" class="mi24 mi-close"> </md-icon></md-button>
+                  	</div>
+                  	<div>
+
+                     	<input id="{{'o-' + notice.id }}" ng-file-select="onFileSelect($files)" note="{{notice.id}}" name="file" type="file" accept="image/*" class="ng-hide">
+                     	<label for="{{'o-' + notice.id}}" class="md-icon-button"><md-icon class="mi24 mi-image"></md-icon></label>
+                  		
+                  	</div>
+                  	<div>
+                  		<md-button ng-click="showEditor($event, notice.id)" class="md-icon-button md-fab md-raised"><md-icon aria-label="Edit" class="mi24 mi-edit"> </md-icon></md-button>
+                  		
+                  	</div>
+                     
+						
+					 
+                  </md-card-icon-actions>
+                </md-card-actions>
+                <md-card-content style="height: 100px; overflow-y: auto">
+                  <p>
+                    {{notice.noticeBody}}
+                  </p>
+                </md-card-content>
+              </md-card>
+ </div>
+ </article>
+
+
+</div>
